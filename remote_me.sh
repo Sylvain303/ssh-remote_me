@@ -2,9 +2,15 @@
 #
 # Usage: ./remote_me.sh
 #
-# Install remote key for user before:
+# Install:
+#
+# Befor you can use remote_me you need to create a ssh-key pair for the user:
 #  ssh-keygen -t rsa
 #  ssh-copy-id -i ~/.ssh/id_rsa depanne@remotehost
+#
+# Requierement:
+#  A remote ssh server where you have an account to login.
+#
 
 cleanup() {
   rm -f $tmp $tmp.pub
@@ -15,7 +21,9 @@ cleanup() {
 control_c() {
   echo -en "\n*** FIN ***\n"
   cleanup
-  exit $?
+  r=$?
+  echo "OK fini."
+  exit $r
 }
  
 # trap keyboard interrupt (control-c)
@@ -24,10 +32,13 @@ trap control_c SIGINT
 
 # 5 hours
 sleep_time=$((5 * 3600))
+
 # some free port which will be used on remote server
 revers_port=19999
-remotehost=geekmanager.ledragon.net
-remote_user=depanne
+
+# edit remote config here:
+remotehost=myserver.remote-name.net
+remote_user=sylvain
 
 #create a temp ssh-key
 tmp=~/.ssh/remote_me_tmp$$
@@ -37,8 +48,9 @@ cat $tmp.pub >> ~/.ssh/authorized_keys
 chmod go= ~/.ssh/authorized_keys
 
 clear
+# start the remote connection with the revert tunnel
 cat $tmp | \
-  ssh -R $revers_port:localhost:22 \
+  ssh -i ~/.ssh/id_rsa -R $revers_port:localhost:22 \
   $remote_user@$remotehost \
   "cat > ~/.ssh/id_rsa && chmod go= ~/.ssh/id_rsa &&
   echo 'ssh $USER@localhost -p $revers_port' > remote_me.sh;
