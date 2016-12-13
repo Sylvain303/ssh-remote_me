@@ -28,7 +28,7 @@ Sur le PC client (que vous voulez controlé à distance):
 
 clone du repository:
 ~~~
-git clone remote_me.git remote_me
+git clone https://github.com/Sylvain303/ssh-remote_me.git remote_me
 ~~~
 
 installation du serveur ssh sur le PC client
