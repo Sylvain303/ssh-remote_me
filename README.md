@@ -8,8 +8,8 @@ PC linux qui ont un serveur ssh, et dernière un réseau NATé.
 Par exemple un PC sous linux que vous avez livré à belle maman, derrière une box Internet.
 
 
-Le script utilise le principe du reverse tunnel ssh vers un serveur distant qui permet à l'informatitcien de passer par
-se même serveur et de se connecter via le tunnel ouvert par le client. Il se trouve alors en SSH sur le PC du cliet.
+Le script utilise le principe du **reverse tunnel ssh** vers un serveur distant qui permet à l'informatitcien de passer par
+ce même serveur et de se connecter via le tunnel ouvert par le client. Il se trouve alors en SSH sur le PC du client.
 
 
 ## État de développement
@@ -20,9 +20,12 @@ Mais fonctionnel.
 
 ## Requis
 
-Vous avez besoin d'un serveur linux avec ssh connecté à l'Internet.
+Vous avez besoin d'un serveur linux avec ssh connecté à l'Internet. Voir plus loin pour un exemple d'installation.
+
 
 ## Installation
+
+### PC client
 
 Sur le PC client (que vous voulez controlé à distance):
 
@@ -55,6 +58,16 @@ vim remote_me.sh
 remotehost=myserver.remote-name.net
 remote_user=depanage
 ~~~
+
+### Sur le serveur que vous voulez utiliser en relais
+
+Exemple sous debian Linux
+
+~~~
+adduser remoteme
+su - remoteme
+~~~
+
 
 ## Usage
 
