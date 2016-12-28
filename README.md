@@ -109,3 +109,8 @@ Côté informaticien.
 ~~~
 
 packager le tout.
+
+## Voir aussi
+
+* autossh : https://raymii.org/s/tutorials/Autossh_persistent_tunnels.html - EN - exemple et packagé
+* autossh : http://www.harding.motd.ca/autossh/ - Projet HOME
